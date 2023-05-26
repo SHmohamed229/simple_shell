@@ -50,31 +50,31 @@ typedef struct liststr
 } list_t;
 
 /**
- *struct passinfo - contains pseudo-arguements to pass into a function,
+ * struct passinfo - this function contains pseudo-arguements to pass into a function,
  *		allowing uniform prototype for function pointer struct
- *@arg: a string generated from getline containing arguements
- *@argv: an array of strings generated from arg
- *@path: a string path for the current command
- *@argc: the argument count
- *@line_count: the error count
- *@err_num: the error code for exit()s
- *@linecount_flag: if on count this line of input
- *@fname: the program filename
- *@env: linked list local copy of environ
- *@environ: custom modified copy of environ from LL env
- *@history: the history node
- *@alias: the alias node
- *@env_changed: on if environ was changed
- *@status: the return status of the last exec'd command
- *@cmd_buf: address of pointer to cmd_buf, on if chaining
- *@cmd_buf_type: CMD_type ||, &&, ;
- *@readfd: the fd from which to read line input
- *@histcount: the history line number count
+ * @arg: for  a string generated from getline containing arguements
+ * @argv: for  an array of strings generated from arg
+ * @path: for  a string path for the current command
+ * @argc: for  the argument count
+ * @line_count: for  the error count
+ * @err_num: for  the error code for exit()s
+ * @linecount_flag: if on count this line of input
+ * @fname: for  the program filename
+ * @env: for  linked list local copy of environ
+ * @environ: for  custom modified copy of environ from LL env
+ * @history: for  the history node
+ * @alias: for  the alias node
+ * @env_changed: for  on if environ was changed
+ * @status: for  the return status of the last exec'd command
+ * @cmd_buf: for  address of pointer to cmd_buf, on if chaining
+ * @cmd_buf_type: CMD_type ||, &&, ;
+ * @readfd: for  the fd from which to read line input
+ * @histcount: for  the history line number count
  */
 typedef struct passinfo
 {
 	char *arg;
-	char *argv;
+	char **argv;
 	char *path;
 	int argc;
 	unsigned int line_count;
@@ -87,6 +87,7 @@ typedef struct passinfo
 	char **environ;
 	int env_changed;
 	int status;
+
 	char **cmd_buf; /* pointer to cmd ; chain buffer, for memory mangement */
 	int cmd_buf_type; /* CMD_type ||, &&, ; */
 	int readfd;
@@ -96,10 +97,11 @@ typedef struct passinfo
 #define INFO_INIT \
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
 	0, 0, 0}
+
 /**
- *struct builtin - for  contains a builtin string and related function
- *@type: the builtin command flag
- *@func: the function
+ *struct builtin - this function  contains a builtin string and related function
+ *@type: for  the builtin command flag
+ *@func: for  the function
  */
 typedef struct builtin
 {
